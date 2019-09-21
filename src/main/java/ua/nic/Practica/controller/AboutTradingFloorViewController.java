@@ -1,6 +1,9 @@
 package ua.nic.Practica.controller;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,7 @@ import ua.nic.Practica.service.ImagesService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @SessionAttributes("tradingFloorEntity")
@@ -51,6 +55,11 @@ public class AboutTradingFloorViewController {
         model.addAttribute("imageList", imageList);
         model.addAttribute("subscriberEntity", new SubscriberEntity());
         model.addAttribute("customerEntity", new CustomerEntity());
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0]);
+        model.addAttribute("userRole", SecurityContextHolder
+                                                                .getContext()
+                                                                .getAuthentication()
+                                                                .getAuthorities().toArray()[0].toString());
 
 
         return "aboutTradingFloor.html";

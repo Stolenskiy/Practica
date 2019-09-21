@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <form th:action="@{/changeTradingFloor}" method="get" class="contact-form">
+                <form th:if="${userRole == 'ROLE_ADMIN'}" th:action="@{/changeTradingFloor}" method="get" class="contact-form">
                     <button type="submit" name="action" value="change"
                             class="primary-btn hover d-inline-flex align-items-center">
                         <span class="mr-10">Change trading floor</span></button>
