@@ -89,7 +89,7 @@ public class ChangeTradingFloorViewController {
 
     static void addImagesToDB (@RequestParam("files") MultipartFile[] files, @Valid TradingFloorEntity tradingFloorEntity, IEntityService imageService, ImagesService imagesService) {
         for (MultipartFile file : files) { // зберігаю зображення в деректорії
-            String filePath = "D:\\Programing\\Java\\Practica\\src\\main\\resources\\static\\image_db\\";
+            String filePath = "D:\\Programing\\Java\\Practica\\src\\main\\resources\\image_db\\";
 
             String filesSplit[] = file.getOriginalFilename().split("\\.");
             String fileExpancion = filesSplit[filesSplit.length - 1];

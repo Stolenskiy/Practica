@@ -50,7 +50,6 @@ public class AddTradingFloorViewController {
     public ModelAndView addTradingFloor (
             ModelAndView modelAndView,
             @RequestParam("files") MultipartFile[] files,
-//            @RequestParam("imageName") String imageName,
             @Valid TradingFloorEntity tradingFloorEntity,
             @Valid LocatedEntity locatedEntity,
             BindingResult result) {
