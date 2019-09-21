@@ -13,6 +13,8 @@
       <mapping class="ua.nic.Practica.model.LocatedEntity"/>
       <mapping class="ua.nic.Practica.model.TradingFloorEntity"/>
       <mapping class="ua.nic.Practica.model.UserEntity"/>
+      <mapping class="ua.nic.Practica.model.CustomerEntity"/>
+      <mapping class="ua.nic.Practica.model.SubscriberEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

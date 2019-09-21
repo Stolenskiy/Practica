@@ -6,14 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import ua.nic.Practica.model.ImageEntity;
-import ua.nic.Practica.model.LocatedEntity;
-import ua.nic.Practica.model.TradingFloorEntity;
-import ua.nic.Practica.model.TradingFloorPackage;
+import org.springframework.web.servlet.ModelAndView;
+import ua.nic.Practica.model.*;
 import ua.nic.Practica.service.IEntityService;
 import ua.nic.Practica.service.ImagesService;
 
+import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,8 @@ import java.util.List;
 public class IndexViewController {
     @Autowired
     private IEntityService tradingFloorService;
+    @Autowired
+    private IEntityService subscriberService;
     @Autowired
     private IEntityService locatedService;
     @Autowired
@@ -31,6 +32,7 @@ public class IndexViewController {
     @GetMapping("/")
     public String startPage (Model model) {
         model.addAttribute("tradingFloorPackageList", getTradingFloorPackageList());
+        model.addAttribute("subscriberEntity", new SubscriberEntity());
         return "index.html";
     }
 
@@ -65,5 +67,18 @@ public class IndexViewController {
         imageName = imageEntity.getId() + "." + imageEntity.getExpancion();
 
         return imageName;
+    }
+
+
+    @RequestMapping(value = "/subscriberTradingFloor", method = RequestMethod.POST, params = "action=subscriber")
+    public ModelAndView subscriberTradingFloor (
+            @Valid SubscriberEntity subscriberEntity,
+            ModelAndView modelAndView
+    ) {
+        subscriberEntity.setDate(java.sql.Date.valueOf(LocalDate.now()));
+        subscriberService.add(subscriberEntity);
+
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 }

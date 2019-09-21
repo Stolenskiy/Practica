@@ -111,16 +111,12 @@
                         <span>Choosing</span> Our Company
                     </h2>
                     <p>
-                        Trading companies are businesses working with different kinds of products which are sold for
-                        consumer, business or government purposes. Trading companies buy a specialized
-                        range of products, maintain a stock or a shop, and deliver products to customers.
-                        Different kinds of practical conditions make for many kinds of business. Usually two kinds of
-                        businesses are defined in trading. Importers or wholesalers maintain a stock and deliver
-                        products to shops or large end customers. They work in a large geographical area,
-                        while their customers, the shops, work in smaller areas and often in just a small neighbourhood.
-                        Today "trading company" mainly refers to global B2B traders, highly specialized in one goods
-                        category and with a strong logistic organization. Changes in practical conditions such as faster
-                        distribution, computing and modern marketing have led to changes in their business models
+                        Trading companies are businesses that handle different types of products that are sold for
+                        consumer, business, or government purposes. Trading companies buy a specialized range of
+                        products, serve stocks or a store and deliver products to customers. Different kinds of
+                        practical conditions create for many types of business. They work in a large geographic area,
+                        while their customers, stores, work in smaller areas and often in a small neighborhood. With the
+                        help of our company, you can choose the trading floor for all your needs
                     </p>
                 </div>
             </div>
@@ -242,7 +238,7 @@
                     <div class="col-lg-10 d-flex justify-content-end">
                         <button type="submit" name="action" value="add"
                                 class="primary-btn white-bg d-inline-flex align-items-center mt-20">
-                            <span class="text-black mr-10">Send trading foto</span>
+                            <span class="text-black mr-10">Send trading photo</span>
                         </button>
                         <br>
                     </div>
@@ -257,15 +253,14 @@
         <div class="container">
             <div class="footer-content d-flex flex-column align-items-center">
                 <div class="footer-menu">
-                    <a href="index.html">Home</a>
-                    <a href="addTradingFloor.html">Generic</a>
-                    <a href="../static/elements.html">Elements</a>
+                    <a href="/">Home</a>
+                    <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
+                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
+                    <a href="http://dribbble.com"><i class="fa fa-dribbble"></i></a>
+                    <a href="http://behance.com"><i class="fa fa-behance"></i></a>
                 </div>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <div class="copy-right-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
@@ -288,21 +283,6 @@
 <script src="js/parallax.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/main.js"></script>
-<script>
-    document.querySelector('#tradingFloorEntity_price').value = "";
-    document.querySelectorAll('.stf').forEach(function (e) {
-        e.onmouseover = function()
-        {
-            e.style.color = "#fff";
-            e.style.backgroundColor = "pink";
-            if (e.getAttribute(id) == "file") {
-                e.innerText = "Обрати файли";
-            } else {
-                e.innerText = "Send trading floor";
-            }
-            e.style.zIndex = "999";
-        }
-    });
-</script>
+
 </body>
 </html>

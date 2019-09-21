@@ -7,4 +7,5 @@ import ua.nic.Practica.model.ImageEntity;
     Для того, щоб забезпечити взаємодію із БД,
     потрібно створити репозиторій для кожної сущності
 */
-public interface IImageRepository extends JpaRepository<ImageEntity, Integer> {}
+public interface IImageRepository extends JpaRepository<ImageEntity, Integer> {
+}

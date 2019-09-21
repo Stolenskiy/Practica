@@ -42,7 +42,6 @@
                             <nav class="hide">
                                 <a href="http://localhost:8080/">Home</a>
                                 <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
-                                <a href="http://localhost:8080/elements">Elements</a>
                             </nav>
                             <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
                         </div>
@@ -110,16 +109,12 @@
                         <span>Choosing</span> Our Company
                     </h2>
                     <p>
-                        Trading companies are businesses working with different kinds of products which are sold for
-                        consumer, business or government purposes. Trading companies buy a specialized
-                        range of products, maintain a stock or a shop, and deliver products to customers.
-                        Different kinds of practical conditions make for many kinds of business. Usually two kinds of
-                        businesses are defined in trading. Importers or wholesalers maintain a stock and deliver
-                        products to shops or large end customers. They work in a large geographical area,
-                        while their customers, the shops, work in smaller areas and often in just a small neighbourhood.
-                        Today "trading company" mainly refers to global B2B traders, highly specialized in one goods
-                        category and with a strong logistic organization. Changes in practical conditions such as faster
-                        distribution, computing and modern marketing have led to changes in their business models
+                        Trading companies are businesses that handle different types of products that are sold for
+                        consumer, business, or government purposes. Trading companies buy a specialized range of
+                        products, serve stocks or a store and deliver products to customers. Different kinds of
+                        practical conditions create for many types of business. They work in a large geographic area,
+                        while their customers, stores, work in smaller areas and often in a small neighborhood. With the
+                        help of our company, you can choose the trading floor for all your needs
                     </p>
                 </div>
             </div>
@@ -147,8 +142,11 @@
                                     <p th:text="${tradingFloorPackage.getTradingFloorEntity().getDescription()}">
                                         Опис
                                     </p>
-                                    <p th:text="${tradingFloorPackage.getTradingFloorEntity().getPrice()} + 'грн/міс'">
+                                    <p th:text="'Price: ' + ${tradingFloorPackage.getTradingFloorEntity().getPrice()} + ' grn/month'">
                                         Ціна
+                                    </p>
+                                    <p th:text="'Discont: ' + ${tradingFloorPackage.getTradingFloorEntity().getDiscont()} + ' %'">
+                                        Знижка
                                     </p>
                                 </div>
                             </a>
@@ -159,65 +157,23 @@
             </div>
         </div>
     </section>
-    <!-- End service Area -->
-    <!-- Start Contact Area -->
-    <section class="contact-area pt-100 pb-100 relative">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="single-contact col-lg-6 col-md-8">
-                    <h2 class="text-white">Send Us <span>Message</span></h2>
-                    <p class="text-white">
-                        Most people who work in an office environment, buy computer products.
-                    </p>
-                </div>
-            </div>
-            <form id="myForm" action="mail.php" method="post" class="contact-form">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5">
-                        <input name="fname" placeholder="Enter your name" onfocus="this.placeholder = ''"
-                               onblur="this.placeholder = 'Enter your name'" class="common-input mt-20" required=""
-                               type="text">
-                    </div>
-                    <div class="col-lg-5">
-                        <input name="email" placeholder="Enter email address"
-                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
-                               class="common-input mt-20" required="" type="email">
-                    </div>
-                    <div class="col-lg-10">
-                        <textarea class="common-textarea mt-20" name="message" placeholder="Messege"
-                                  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
-                                  required=""></textarea>
-                    </div>
-                    <div class="col-lg-10 d-flex justify-content-end">
-                        <button class="primary-btn white-bg d-inline-flex align-items-center mt-20"><span
-                                class="text-black mr-10">Send Message</span><span
-                                class="text-black lnr lnr-arrow-right"></span></button>
-                        <br>
-                    </div>
-                    <div class="alert-msg"></div>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!-- End  Contact Area -->
-    <!-- Start newsletter Area -->
     <section class="newsletter-area pt-100 pb-100">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="text-center">
-                    <h3>Subscribe for our <span>Newsletter</span></h3>
+                    <h3>Subscribe for Our <span>Newsletter</span></h3>
                     <div class="subcribe-form" id="mc_embed_signup">
                         <form target="_blank" novalidate="true"
-                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                              method="get" class="subscription relative">
-                            <input name="EMAIL" placeholder="Your Email address" onfocus="this.placeholder = ''"
+                              th:action="@{/subscriberTradingFloor}"
+                              method="post" class="subscription relative">
+                            <!--/*@thymesVar id="subscriberEntity" type="ua.nic.Practica.model.SubscriberEntity"*/-->
+                            <input th:value="${subscriberEntity.getEmail()}" name="email" placeholder="Your Email address" onfocus="this.placeholder = ''"
                                    onblur="this.placeholder = 'Your Email address'" required="" type="email">
                             <div style="position: absolute; left: -5000px;">
                                 <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
                             </div>
-                            <button class="primary-btn hover d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span
+                            <button type="submit" name="action" value="subscriber"
+                                    class="primary-btn hover d-inline-flex align-items-center"><span class="mr-10">Subscribe</span><span
                                     class="lnr lnr-arrow-right"></span></button>
                             <div class="info"></div>
                         </form>
@@ -235,13 +191,12 @@
                 <div class="footer-menu">
                     <a href="/">Home</a>
                     <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
-                    <a href="../static/elements.html">Elements</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
+                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
+                    <a href="http://dribbble.com"><i class="fa fa-dribbble"></i></a>
+                    <a href="http://behance.com"><i class="fa fa-behance"></i></a>
                 </div>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <div class="copy-right-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script>

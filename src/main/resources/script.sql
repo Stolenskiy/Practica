@@ -81,3 +81,35 @@ alter table "user" owner to "CossackProger";
 create unique index if not exists user_login_uindex
 	on "user" (login);
 
+create table if not exists customer
+(
+	id serial not null
+		constraint customers_pk
+			primary key,
+	name varchar(100) not null,
+	email varchar(40),
+	phone varchar(15) not null,
+	message varchar(1500),
+	trading_floor_id integer
+		constraint customers_trading_floor_id_fk
+			references trading_floor
+);
+
+alter table customer owner to "CossackProger";
+
+create table if not exists subscriber
+(
+	id serial not null
+		constraint subscriber_pk
+			primary key,
+	date date,
+	email varchar(30) not null
+);
+
+comment on table subscriber is 'Підписники';
+
+alter table subscriber owner to "CossackProger";
+
+create unique index if not exists subscriber_email_uindex
+	on subscriber (email);
+

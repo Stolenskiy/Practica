@@ -1,6 +1,7 @@
 package ua.nic.Practica.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.nic.Practica.model.*;
 import ua.nic.Practica.service.IEntityService;
 import ua.nic.Practica.service.ImagesService;
+import ua.nic.Practica.service.MailService;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -25,11 +27,16 @@ public class AddTradingFloorViewController {
     @Autowired
     private IEntityService tradingFloorService;
     @Autowired
+    private IEntityService subscriberService;
+    @Autowired
     private IEntityService locatedService;
     @Autowired
     private IEntityService imageService;
     @Autowired
     private ImagesService imagesService;
+    @Autowired
+    private MailService mailService;
+
 
     @GetMapping("/addTradingFloor")
     public String startPage (Model model) {
@@ -53,66 +60,21 @@ public class AddTradingFloorViewController {
         tradingFloorEntity.setLocatedId(locatedEntity.getId());
 
         tradingFloorService.add(tradingFloorEntity);
-        for (MultipartFile file : files) { // зберігаю зображення в деректорії
-            String filePath = "D:\\Programing\\Java\\Practica\\src\\main\\resources\\static\\image_db\\";
+        ChangeTradingFloorViewController.addImagesToDB(files, tradingFloorEntity, imageService, imagesService);
 
-            String filesSplit[] = file.getOriginalFilename().split("\\.");
-            String fileExpancion = filesSplit[filesSplit.length - 1];
-
-            ImageEntity imageEntity = new ImageEntity();
-            imageEntity.setExpancion(fileExpancion);
-            imageService.add(imageEntity);
-
-            filePath += imageEntity.getId() + ".";
-            filePath += fileExpancion;
-            File dest = new File(filePath);
+        for (SubscriberEntity subscriberEntity :
+                (List<SubscriberEntity>) subscriberService.getAll()) {
             try {
-                file.transferTo(dest);
-            } catch (IOException e) {
-                e.printStackTrace();
+                String subject = "Pemodule add new Trading Floor";
+                String text = "We have good news! Look for the new trading floor!\n Just click here -> ";
+                text += "http://localhost:8080/aboutTradingFloor?tradingFloorId=" + tradingFloorEntity.getId();
+                mailService.sendEmail(subscriberEntity.getEmail(), subject, text);
+            } catch (MailException mailException) {
+                System.out.println(mailException);
             }
-
-            // з'єдную зображення із торговими площадками
-            ImagesEntity imagesEntity = new ImagesEntity();
-            imagesEntity.setImageId(imageEntity.getId());
-            imagesEntity.setTradingFloorId(tradingFloorEntity.getId());
-            imagesService.add(imagesEntity);
         }
+
         modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
-    /*@RequestMapping(value = "/imageList", method = RequestMethod.POST, params = "action=delete")
-    ModelAndView deleteImage (
-            ModelAndView modelAndView,
-            @Valid ImageEntity imageEntity,
-            BindingResult result) {
-        imageService.delete(imageEntity.getId());
-        modelAndView.setViewName("redirect:/imageList");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/imageList", method = RequestMethod.POST, params = "action=add")
-    ModelAndView addImage (
-            ModelAndView modelAndView,
-            @Valid ImageEntity imageEntity,
-            BindingResult result) {
-        imageService.add(imageEntity);
-        modelAndView.setViewName("redirect:/imageList");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/imageList", method = RequestMethod.POST, params = "action=save")
-    ModelAndView updateImage (
-            ModelAndView modelAndView,
-            @Valid ImageEntity imageEntity,
-            BindingResult result) {
-
-        if (!result.hasErrors()) {
-            imageService.delete(imageEntity.getId());
-            imageService.add(imageEntity);
-            modelAndView.getModel().put("image", imageEntity);
-            modelAndView.setViewName("redirect:/imageList");
-        }
-        return modelAndView;
-    }*/
 }

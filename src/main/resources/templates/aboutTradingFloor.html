@@ -75,6 +75,12 @@
                         <!--/*@thymesVar id="tradingFloorEntity" type="ua.nic.Practica.model.TradingFloorEntity"*/-->
                         <h2 th:text="${tradingFloorEntity.mainName}"></h2>
                         <p th:text="${tradingFloorEntity.description}"></p>
+                        <p th:text="'Price: ' + ${tradingFloorEntity.getPrice()} + ' grn/month'">
+                            Ціна
+                        </p>
+                        <p th:text="'Discont: ' + ${tradingFloorEntity.getDiscont()} + ' %'">
+                            Знижка
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -94,6 +100,7 @@
             </div>
         </div>
     </section>
+
 
     <section class="service-area">
         <div class="container">
@@ -119,8 +126,92 @@
                             <h5 style="padding: 5%" th:text="'Room number: ' + ${locatedEntity.roomNumber}"></h5>
                         </div>
                     </div>
+                </div>
+                <form th:action="@{/changeTradingFloor}" method="get" class="contact-form">
+                    <button type="submit" name="action" value="change"
+                            class="primary-btn hover d-inline-flex align-items-center">
+                        <span class="mr-10">Change trading floor</span></button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-                    </form>
+    <section class="contact-area pt-100 pb-100 relative">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="single-contact col-lg-6 col-md-8">
+                    <h2 class="text-white">Send Us <span>Message</span></h2>
+                    <p class="text-white">
+                        If You are interested in buying then leave Us your contact details. And Our employee will
+                        definitely contact You.
+                    </p>
+                </div>
+            </div>
+            <form th:action="@{/customerTradingFloor}"
+                  method="post" class="contact-form">
+                <div class="row justify-content-center">
+                    <!--/*@thymesVar id="customerEntity" type="ua.nic.Practica.model.CustomerEntity"*/-->
+                    <div class="col-lg-5">
+                        <input name="name" th:value="${customerEntity.name}" placeholder="Enter your name"
+                               onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Enter your name'" class="common-input mt-20" required=""
+                               type="text">
+                    </div>
+                    <div class="col-lg-5">
+                        <input name="email" th:value="${customerEntity.email}" placeholder="Enter email address"
+                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
+                               class="common-input mt-20" required="" type="email">
+                    </div>
+                    <div class="col-lg-5">
+                        <input name="phone" th:value="${customerEntity.phone}" placeholder="Enter phone number"
+                               pattern="^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$"
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter phone number'"
+                               class="common-input mt-20" required="" type="text">
+                    </div>
+                    <div class="col-lg-10">
+                        <textarea class="common-textarea mt-20" th:value="${customerEntity.message}" name="message"
+                                  placeholder="Messege"
+                                  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
+                                  required=""></textarea>
+                    </div>
+                    <div class="col-lg-10 d-flex justify-content-end">
+                        <button name="action" value="customer"
+                                class="primary-btn white-bg d-inline-flex align-items-center mt-20"><span
+                                class="text-black mr-10">Send Informations</span><span
+                                class="text-black lnr lnr-arrow-right"></span></button>
+                        <br>
+                    </div>
+                    <div class="alert-msg"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- End  Contact Area -->
+    <!-- Start newsletter Area -->
+    <section class="newsletter-area pt-100 pb-100">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="text-center">
+                    <h3>Subscribe for Our <span>Newsletter</span></h3>
+                    <div class="subcribe-form" id="mc_embed_signup">
+                        <form target="_blank" novalidate="true"
+                              th:action="@{/subscriberTradingFloor}"
+                              method="post" class="subscription relative">
+                            <!--/*@thymesVar id="subscriberEntity" type="ua.nic.Practica.model.SubscriberEntity"*/-->
+                            <input th:value="${subscriberEntity.getEmail()}" name="email" placeholder="Your Email address" onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Your Email address'" required="" type="email">
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            </div>
+                            <button type="submit" name="action" value="subscriber"
+                                    class="primary-btn hover d-inline-flex align-items-center"><span class="mr-10">Subscribe</span><span
+                                    class="lnr lnr-arrow-right"></span></button>
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                    <p>We won’t send any types of spam, Guranteed</p>
                 </div>
             </div>
         </div>
@@ -136,10 +227,10 @@
                     <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
+                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
+                    <a href="http://dribbble.com"><i class="fa fa-dribbble"></i></a>
+                    <a href="http://behance.com"><i class="fa fa-behance"></i></a>
                 </div>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <div class="copy-right-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
