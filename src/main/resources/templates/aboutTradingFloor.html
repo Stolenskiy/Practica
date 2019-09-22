@@ -14,7 +14,7 @@
     <meta name="keywords" content="">
     <!-- meta character set -->
     <meta charset="UTF-8">
-    <title>New Trading Floor</title>
+    <title>About Trading Floor</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,500,600" rel="stylesheet">
     <!--
@@ -73,14 +73,14 @@
                 <div class="col-md-6">
                     <div class="feature-left">
                         <!--/*@thymesVar id="tradingFloorEntity" type="ua.nic.Practica.model.TradingFloorEntity"*/-->
-                        <h2 th:text="${tradingFloorEntity.mainName}"></h2>
-                        <p th:text="${tradingFloorEntity.description}"></p>
-                        <p th:text="'Price: ' + ${tradingFloorEntity.getPrice()} + ' grn/month'">
+                        <h2 style="font-weight:bold; padding: 3%;" th:text="${tradingFloorEntity.mainName}"></h2>
+                        <h4 style="font-style:italic; padding: 3%;" th:text="${tradingFloorEntity.description}"></h4>
+                        <h4 style="text-decoration:underline; padding: 3%;" th:text="'Price: ' + ${tradingFloorEntity.getPrice()} + ' grn/month'">
                             Ціна
-                        </p>
-                        <p th:text="'Discont: ' + ${tradingFloorEntity.getDiscont()} + ' %'">
+                        </h4>
+                        <h4 style="text-decoration:underline; padding: 3%;" th:text="'Discont: ' + ${tradingFloorEntity.getDiscont()} + ' %'">
                             Знижка
-                        </p>
+                        </h4>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -89,7 +89,6 @@
                             <div class="single-slider item">
                                 <!--/*@thymesVar id="imageEntity" type="ua.nic.Practica.model.ImageEntity"*/-->
                                 <img
-                                        style="height: 100%; width: 100%;"
                                         th:src="'image_db/' + ${imageEntity.id} + '.' + ${imageEntity.expancion}"
                                         alt=""
                                 >
@@ -127,7 +126,8 @@
                         </div>
                     </div>
                 </div>
-                <form th:if="${userRole == 'ROLE_ADMIN'}" th:action="@{/changeTradingFloor}" method="get" class="contact-form">
+                <form th:if="${userRole == 'ROLE_ADMIN'}" th:action="@{/changeTradingFloor}" method="get"
+                      class="contact-form">
                     <button type="submit" name="action" value="change"
                             class="primary-btn hover d-inline-flex align-items-center">
                         <span class="mr-10">Change trading floor</span></button>
@@ -200,7 +200,8 @@
                               th:action="@{/subscriberTradingFloor}"
                               method="post" class="subscription relative">
                             <!--/*@thymesVar id="subscriberEntity" type="ua.nic.Practica.model.SubscriberEntity"*/-->
-                            <input th:value="${subscriberEntity.getEmail()}" name="email" placeholder="Your Email address" onfocus="this.placeholder = ''"
+                            <input th:value="${subscriberEntity.getEmail()}" name="email"
+                                   placeholder="Your Email address" onfocus="this.placeholder = ''"
                                    onblur="this.placeholder = 'Your Email address'" required="" type="email">
                             <div style="position: absolute; left: -5000px;">
                                 <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
@@ -235,7 +236,8 @@
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <div class="copy-right-text">Chernivtsi &copy;<script>document.write(new Date().getFullYear());</script>
                     All rights not reserved | This site is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    Serhii Stolenskyi</div>
+                    Serhii Stolenskyi
+                </div>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
         </div>

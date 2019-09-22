@@ -55,7 +55,6 @@ public class AboutTradingFloorViewController {
         model.addAttribute("imageList", imageList);
         model.addAttribute("subscriberEntity", new SubscriberEntity());
         model.addAttribute("customerEntity", new CustomerEntity());
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0]);
         model.addAttribute("userRole", SecurityContextHolder
                                                                 .getContext()
                                                                 .getAuthentication()
