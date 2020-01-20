@@ -100,7 +100,7 @@ public class GenerateCode {
                         "\n" +
                         "    @Override\n" +
                         "    public " + tName + "Entity getById(Long id) {\n" +
-                        "        log.info(\"In " + tName + "Service getById{{}\" + id);\n" +
+                        "        log.info(\"In " + tName + "Service getById{}\" + id);\n" +
                         "        return " + lowerTName + "Repository.getOne(id);\n" +
                         "    }\n" +
                         "\n" +

@@ -18,23 +18,27 @@ public class CustomerService implements IEntityService {
     @Autowired
     ICustomerRepository customerRepository;
 
-
+    public void deleteAllByTradingFloorId(Integer tradingFloorId){
+        log.info("In CustomerService deleteAllByTradingFloorId{}" + tradingFloorId);
+        customerRepository.deleteAllByTradingFloorId(tradingFloorId);
+    }
+    
     @Override
     public CustomerEntity getById(Integer id) {
-        log.info("In LocatedService getById{{}" + id);
+        log.info("In CustomerService getById{}" + id);
         return customerRepository.getOne(id);
     }
 
     @Override
     public void add(Object located) {
-        log.info("In LocatedService save{}" + located);
+        log.info("In CustomerService save{}" + located);
 
         customerRepository.save((CustomerEntity) located);
     }
 
     @Override
     public void delete(Integer id) {
-        log.info("In LocatedService delete{}" + id);
+        log.info("In CustomerService delete{}" + id);
         customerRepository.deleteById(id);
     }
 

@@ -20,7 +20,7 @@ public class TradingFloorService implements IEntityService {
 
     @Override
     public TradingFloorEntity getById(Integer id) {
-        log.info("In TradingFloorService getById{{}" + id);
+        log.info("In TradingFloorService getById{}" + id);
         return tradingFloorRepository.getOne(id);
     }
 

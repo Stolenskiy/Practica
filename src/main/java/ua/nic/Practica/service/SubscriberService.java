@@ -21,7 +21,7 @@ public class SubscriberService implements IEntityService {
 
     @Override
     public SubscriberEntity getById(Integer id) {
-        log.info("In LocatedService getById{{}" + id);
+        log.info("In LocatedService getById{}" + id);
         return subscriberRepository.getOne(id);
     }
 

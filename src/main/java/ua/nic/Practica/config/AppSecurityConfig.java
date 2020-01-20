@@ -40,8 +40,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/addTradingFloor").hasRole("ADMIN")
                 .antMatchers("/changeTradingFloor").hasRole("ADMIN")
 //                .antMatchers("/**").hasRole("ADMIN") // надаю адміну доступ до всіх сторінок
-                .antMatchers("/user").hasAnyRole("USER", "ADMIN") // надаю юзеру та адміну доступ до сторінки user
+//                .antMatchers("/user").hasAnyRole("USER", "ADMIN") // надаю юзеру та адміну доступ до сторінки user
                 .antMatchers("/").permitAll() // надаю всім користувачам доступ до головної сторінки
+                .antMatchers("/subscriberTradingFloor").permitAll() // надаю всім користувачам доступ до головної сторінки
                 .and().formLogin(); // відкриває сторінку авторизації, якщо користувач не авторизувався
 
     }

@@ -20,7 +20,7 @@ public class LocatedService implements IEntityService {
 
     @Override
     public LocatedEntity getById(Integer id) {
-        log.info("In LocatedService getById{{}" + id);
+        log.info("In LocatedService getById{}" + id);
         return locatedRepository.getOne(id);
     }
 

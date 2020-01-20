@@ -20,7 +20,7 @@ public class ImageService implements IEntityService {
 
     @Override
     public ImageEntity getById(Integer id) {
-        log.info("In ImageService getById{{}" + id);
+        log.info("In ImageService getById{}" + id);
         return imageRepository.getOne(id);
     }
 

@@ -167,7 +167,8 @@
                               th:action="@{/subscriberTradingFloor}"
                               method="post" class="subscription relative">
                             <!--/*@thymesVar id="subscriberEntity" type="ua.nic.Practica.model.SubscriberEntity"*/-->
-                            <input th:value="${subscriberEntity.getEmail()}" name="email" placeholder="Your Email address" onfocus="this.placeholder = ''"
+                            <input th:value="${subscriberEntity.getEmail()}" name="email"
+                                   placeholder="Your Email address" onfocus="this.placeholder = ''"
                                    onblur="this.placeholder = 'Your Email address'" required="" type="email">
                             <div style="position: absolute; left: -5000px;">
                                 <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
@@ -201,7 +202,8 @@
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 <div class="copy-right-text">Chernivtsi &copy;<script>document.write(new Date().getFullYear());</script>
                     All rights not reserved | This site is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    Serhii Stolenskyi</div>
+                    Serhii Stolenskyi
+                </div>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
         </div>

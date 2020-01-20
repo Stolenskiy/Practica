@@ -12,6 +12,7 @@ import ua.nic.Practica.model.ImageEntity;
 import ua.nic.Practica.model.ImagesEntity;
 import ua.nic.Practica.model.LocatedEntity;
 import ua.nic.Practica.model.TradingFloorEntity;
+import ua.nic.Practica.service.CustomerService;
 import ua.nic.Practica.service.IEntityService;
 import ua.nic.Practica.service.ImagesService;
 
@@ -25,6 +26,8 @@ public class ChangeTradingFloorViewController {
 
     @Autowired
     private IEntityService tradingFloorService;
+    @Autowired
+    private CustomerService customerService;
     @Autowired
     private IEntityService locatedService;
     @Autowired
@@ -47,7 +50,11 @@ public class ChangeTradingFloorViewController {
             imagesService.delete(imagesEntity.getId());
             imageService.delete(imagesEntity.getImageId());
         }
-
+        try {
+            customerService.deleteAllByTradingFloorId(tradingFloorEntity.getId());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         tradingFloorService.delete(tradingFloorEntity.getId());
         locatedService.delete(tradingFloorEntity.getLocatedId());
         modelAndView.setViewName("redirect:/");
