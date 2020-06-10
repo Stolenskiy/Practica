@@ -35,16 +35,6 @@
             <div class="container">
                 <div class="header-wrap">
                     <div class="header-top d-flex justify-content-between align-items-center">
-                        <div class="logo">
-                            <a href="/"><img src="template`s img/logo.png" alt=""></a>
-                        </div>
-                        <div class="main-menubar d-flex align-items-center">
-                            <nav class="hide">
-                                <a href="http://localhost:8080/">Home</a>
-                                <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
-                            </nav>
-                            <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -55,8 +45,8 @@
                 <div class="row height align-items-center justify-content-center">
                     <div class="col-lg-7">
                         <div class="banner-content text-center">
-                            <h4 class="text-uppercase">your best partner</h4>
-                            <h1>Pemodule</h1>
+                            <h4 class="text-uppercase">a new era</h4>
+                            <h1>of art</h1>
                         </div>
                     </div>
                 </div>
@@ -65,148 +55,42 @@
     </div>
 </div>
 <div class="main-wrapper">
-    <!-- Start Feature Area -->
-    <section class="featured-area pt-100 pb-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="feature-left">
-                        <h2>
-                            Reasons For <br>
-                            <span>Choosing</span> Our Company
-                        </h2>
-                        <p>
-                            Our company will help you find the best location for your business.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="feature-right active-feature-carousel">
-                        <div class="single-slider item">
-                            <img style="height: 316px; width: 100%;" src="template`s img/slider1.jpg" alt="">
-                        </div>
-                        <div class="single-slider item">
-                            <img style="height: 316px; width: 100%;" src="template`s img/slider2.jpg" alt="">
-                        </div>
-                        <div class="single-slider item">
-                            <img style="height: 316px; width: 100%;" src="template`s img/slider3.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Feature Area -->
-    <!-- Start parallux Area -->
-    <section class="parallux-area pt-100 pb-100 relative" data-parallax="scroll"
-             data-image-src="template`s img/parallux-bg.jpg">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row justify-content-end">
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                    <h2>
-                        Reasons For <br>
-                        <span>Choosing</span> Our Company
-                    </h2>
-                    <p>
-                        Trading companies are businesses that handle different types of products that are sold for
-                        consumer, business, or government purposes. Trading companies buy a specialized range of
-                        products, serve stocks or a store and deliver products to customers. Different kinds of
-                        practical conditions create for many types of business. They work in a large geographic area,
-                        while their customers, stores, work in smaller areas and often in a small neighborhood. With the
-                        help of our company, you can choose the trading floor for all your needs
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End parallux Area -->
-    <!-- Start service Area -->
+
     <section class="service-area">
         <div class="container">
             <div class="row">
-                <!--/*@thymesVar id="tradingFloorPackageList" type="ua.nic.Practica.model.TradingFloorPackage"*/-->
-                <tr th:each="tradingFloorPackage : ${tradingFloorPackageList}">
+
+                <tr th:each="imageDir : ${imageList}">
                     <div class="col-md-6">
-                        <!--                        <div class="single-service" style="background: url('image_db/1.jpg');">-->
-                        <div class="single-service">
-                            <img style="width: inherit; height: inherit;"
-                                 th:src="${tradingFloorPackage.getImageDir()}"/>
-                            <a style="display:block"
-                               th:href="@{/aboutTradingFloor(
-                               tradingFloorId=${tradingFloorPackage.getTradingFloorEntity().id})}">
-                                <div class="overlay overlay-content">
-                                    <h4 class="text-uppercase"
-                                        th:text="${tradingFloorPackage.getTradingFloorEntity().getMainName()}">
-                                        Заголовок</h4>
-                                    <p th:text="${tradingFloorPackage.getTradingFloorEntity().getDescription()}">
-                                        Опис
-                                    </p>
-                                    <p th:text="'Price: ' + ${tradingFloorPackage.getTradingFloorEntity().getPrice()} + ' grn/month'">
-                                        Ціна
-                                    </p>
-                                    <p th:text="'Discont: ' + ${tradingFloorPackage.getTradingFloorEntity().getDiscont()} + ' %'">
-                                        Знижка
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
+                        <a style="display:block"
+                           th:href="@{/selectedImage(
+                               imageDir=${imageDir})}">
+                            <div class="single-service">
+                                <img style="width: inherit; height: inherit;"
+                                     th:src="${imageDir}"/>
+                            </div>
+                        </a>
                     </div>
                 </tr>
 
             </div>
         </div>
     </section>
-    <section class="newsletter-area pt-100 pb-100">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="text-center">
-                    <h3>Subscribe for Our <span>Newsletter</span></h3>
-                    <div class="subcribe-form" id="mc_embed_signup">
-                        <form target="_blank" novalidate="true"
-                              th:action="@{/subscriberTradingFloor}"
-                              method="post" class="subscription relative">
-                            <!--/*@thymesVar id="subscriberEntity" type="ua.nic.Practica.model.SubscriberEntity"*/-->
-                            <input th:value="${subscriberEntity.getEmail()}" name="email" placeholder="Your Email address" onfocus="this.placeholder = ''"
-                                   onblur="this.placeholder = 'Your Email address'" required="" type="email">
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                            </div>
-                            <button type="submit" name="action" value="subscriber"
-                                    class="primary-btn hover d-inline-flex align-items-center"><span class="mr-10">Subscribe</span><span
-                                    class="lnr lnr-arrow-right"></span></button>
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                    <p>We won’t send any types of spam, Guranteed</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Start newsletter Area -->
-    <!-- Start footer Area -->
+
+
     <footer class="footer-area relative">
         <div class="container">
             <div class="footer-content d-flex flex-column align-items-center">
-                <div class="footer-menu">
-                    <a href="/">Home</a>
-                    <a href="http://localhost:8080/addTradingFloor">Add trading floor</a>
-                </div>
-                <div class="footer-social">
-                    <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
-                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
-                    <a href="http://dribbble.com"><i class="fa fa-dribbble"></i></a>
-                    <a href="http://behance.com"><i class="fa fa-behance"></i></a>
-                </div>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
                 <div class="copy-right-text">Chernivtsi &copy;<script>document.write(new Date().getFullYear());</script>
                     All rights not reserved | This site is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    Serhii Stolenskyi</div>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Serhii Stolenskyi
+                </div>
+
             </div>
         </div>
     </footer>
-    <!-- End footer Area -->
+
 </div>
 
 
