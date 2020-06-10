@@ -9,6 +9,6 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers (ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/image_db/**")
-                .addResourceLocations("file:///D:/Programing/Java/Practica/src/main/resources/image_db/");
+                .addResourceLocations("file:/resources/image_db/");
     }
 }
